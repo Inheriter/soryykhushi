@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sorry Khushi</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family: 'Poppins', sans-serif;
+background: linear-gradient(135deg,#ffd6e7,#d6e9ff);
+overflow:hidden;
+}
+
+.card{
+width:85%;
+max-width:750px;
+background:rgba(255,255,255,0.7);
+backdrop-filter: blur(10px);
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+h1{
+color:#ff3b7f;
+margin-bottom:20px;
+}
+
+#message{
+font-size:18px;
+line-height:1.6;
+color:#333;
+min-height:150px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ff4f8b;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+#sorryWall{
+display:none;
+height:350px;
+overflow:auto;
+margin-top:20px;
+}
+
+.sorry{
+font-size:16px;
+color:#444;
+margin:3px;
+}
+
+.heart{
+position:absolute;
+color:#ff6b9c;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Khushi… I'm Really Sorry</h1>
+
+<div id="message"></div>
+
+<button onclick="showSorry()">I shouldn't have said goodnight…</button>
+
+<div id="sorryWall"></div>
+
+</div>
+
+<script>
+
+const text = `todayyy… when you needed someone to stay,
+someone to listen,
+someone to simply be there…
+
+I said "goodnight bye."
+
+And the more I think about it,
+the more it bothers me.
+
+Because sometimes what people need
+isn't advice or solutions.
+
+They just need someone
+who doesn't leave.
+
+I wish I had understood that moment better.
+
+I can't undo that night,
+but I want you to know this comes from my heart.
+
+So I'm saying sorry —
+not once,
+but 400 times.`;
+
+let i=0;
+const speed=40;
+
+function typeWriter(){
+
+if(i<text.length){
+document.getElementById("message").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter,speed);
+}
+
+}
+
+typeWriter();
+
+function showSorry(){
+
+const wall=document.getElementById("sorryWall");
+wall.style.display="block";
+
+for(let i=0;i<400;i++){
+
+let div=document.createElement("div");
+div.className="sorry";
+div.innerText="Sorry Khushi";
+
+setTimeout(()=>{
+wall.appendChild(div);
+},i*35);
+
+}
+
+}
+
+function createHeart(){
+
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},6000);
+
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
